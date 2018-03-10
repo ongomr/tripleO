@@ -15,10 +15,10 @@ Vagrant.configure("2") do |config|
       vucsrv.customize ["modifyvm", :id, "--name", "ucsrv"]
     end
      # Setting up ssh keys for root
-     #config.vm.synced_folder "./configs/", "/mnt/configs"
      config.vm.provision "shell", path: "scripts/setup_ssh.sh"
      config.vm.provision "shell", path: "scripts/setup_locale.sh"
      config.vm.provision "shell", inline: "sudo yum update -y"
+     # add reboot of vm to process, before installation of TripleO
      config.vm.provision "shell", path: "scripts/setup_uc.sh"
   end
 #
