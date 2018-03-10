@@ -1,5 +1,8 @@
 #!/bin/bash
 
+user=vagrant
+group=vagrant
+
 # setting hostname
 if [ $# -eq 0 ]
   then
@@ -23,7 +26,7 @@ sudo -E tripleo-repos -b newton current ceph
 sudo yum install -y python-tripleoclient
 sudo yum install -y ceph-ansible
 sudo cp /vagrant/configs/undercloud.conf  ~/undercloud.conf
-sudo chown stack:stack ~/undercloud.conf
+sudo chown $user:$group ~/undercloud.conf
 openstack undercloud install
 # Back to the root user here
 #DEVOPS_BLOCK
